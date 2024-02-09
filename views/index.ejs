@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chatingan</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div id="chat">
+      <div id="sidebar">
+        <h3>Users Online</h3>
+        <ul id="user-list"></ul>
+      </div>
+      <div id="chat-window">
+        <ul id="messages"></ul>
+      </div>
+      <div id="chat-control">
+        <h3>Send Message</h3>
+        <form id="form">
+          <input id="input" autocomplete="off" /><button>Send</button>
+        </form>
+        <h3>Send Private Message</h3>
+        <form id="private-form">
+          <input type="text" id="recipient" placeholder="Recipient" />
+          <input type="text" id="private-input" placeholder="Message" />
+          <button>Send</button>
+        </form>
+        <h3>Send Image</h3>
+        <form id="image-form">
+          <input type="file" id="image-input" />
+          <button>Upload</button>
+        </form>
+      </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://bundle.run/buffer@6.0.3"></script>
+    <script src="/client.js"></script>
+  </body>
+</html>
