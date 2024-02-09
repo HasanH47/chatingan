@@ -9,9 +9,6 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIo(server);
 
-// Set view engine
-app.set("view engine", "ejs");
-
 // Serve static files from the public directory
 app.use(express.static("public"));
 
@@ -39,7 +36,7 @@ app.use(helmet.referrerPolicy({ policy: "same-origin" }));
 
 // Serve chat page
 app.get("/", (req, res) => {
-  res.render("index");
+  res.sendFile(__dirname + "/views/index.html");
 });
 
 // Store connected users
