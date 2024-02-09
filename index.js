@@ -9,9 +9,6 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIo(server);
 
-// Serve static files from the public directory
-app.use(express.static("public"));
-
 // Use helmet middleware for security headers
 app.use(helmet());
 
@@ -38,6 +35,9 @@ app.use(helmet.referrerPolicy({ policy: "same-origin" }));
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/views/index.html");
 });
+
+// Middleware untuk menangani file statis dengan benar
+app.use(express.static(__dirname + "/public"));
 
 // Store connected users
 const users = {};
