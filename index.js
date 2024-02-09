@@ -3,11 +3,18 @@
 const express = require("express");
 const http = require("http");
 const socketIo = require("socket.io");
+const path = require("path");
 const helmet = require("helmet");
 
 const app = express();
 const server = http.createServer(app);
 const io = socketIo(server);
+
+// Set view engine
+app.set("view engine", "ejs");
+
+// Serve static files from the public directory
+app.use(express.static("public"));
 
 // Use helmet middleware for security headers
 app.use(helmet());
@@ -33,11 +40,8 @@ app.use(helmet.referrerPolicy({ policy: "same-origin" }));
 
 // Serve chat page
 app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/views/index.html");
+  res.render("index");
 });
-
-// Middleware untuk menangani file statis dengan benar
-app.use(express.static(__dirname + "/public"));
 
 // Store connected users
 const users = {};
